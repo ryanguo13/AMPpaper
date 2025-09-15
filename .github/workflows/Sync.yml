@@ -29,7 +29,7 @@ jobs:
             })
 
     - name: Fetch the latest version from overleaf server
-      uses: subhamx/overleaf_sync_with_git@v1
+      uses: subhamx/overleaf_sync_with_git@latest
       with:
         OVERLEAF_HOST: "www.overleaf.com"
         OVERLEAF_PROJECT_ID: ${{ secrets.OVERLEAF_PROJECT_ID }}
