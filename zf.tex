@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % For including images
+\usepackage{caption} % For figure captions
+\usepackage{subcaption} % For subfigures if needed
+\usepackage{booktabs} % For professional-looking tables
+\usepackage{siunitx} % For proper alignment of numbers and units in tables
+
+\title{Discovery of Antimicrobial Peptides via Deep Learning-based Multi-Strategy Generation and Machine Learning Evaluation}
+\author{Your Name}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Abstract}
+% Add your abstract content here.
+
+\section{Results}
+
+\subsection{Development of Deep Generative Models and Multi-Strategy Sequence Generation}
+This study first aims to build a deep generative model capable of effectively exploring the sequence space of antimicrobial peptides (AMPs). We adopted a data-driven approach, extracting key information from known AMPs databases, including amino acid frequency distribution, common sequence patterns, and higher-order inter-amino acid correlations. Based on this, we integrated and developed the following multi-strategy sequence generation approaches:
+
+\subsubsection{Feature-Guided Generation}
+Feature-guided generation is a targeted method that utilizes known feature templates extracted from natural AMPs to guide sequence generation. [cite_start]Unlike the "full sequence generation" approach (e.g., through a machine-learning pipeline that mines the entire peptide sequence space [cite: 6]), feature-guided generation is more purposeful, creating peptide chains that conform to specific biological functions by using preset structural templates. [cite_start]This significantly improves generation efficiency and success rates[cite: 6]. [cite_start]This strategy can be considered a unique "degeneracy" approach, designed to directly "inject" known antimicrobial features into the generation process to efficiently obtain peptide chains with classic AMP characteristics (Figure \ref{fig:process})[cite: 6]. The specific templates used include:
+
+\begin{itemize}
+    \item \textbf{$\alpha$-helical template:}
+    [cite_start]The (XXYY)n template, where X = hydrophobic residue, Y = cationic residue, and n = 2–4[cite: 8]. After folding into an $\alpha$-helical structure, peptide chains with this pattern exhibit clear amphipathicity, with one side being hydrophobic and the other cationic. [cite_start]This is crucial for their interaction with bacterial cell membranes[cite: 8].
+    [cite_start]The (abcdefg)n, or heptad repeat sequence[cite: 9]. [cite_start]In this motif, positions 'a' and 'd' are typically hydrophobic amino acids that form a hydrophobic core, while other positions contain hydrophilic or charged residues, ensuring the stability and functionality of the helical structure[cite: 9].
+    \item \textbf{$\beta$-sheet template:}
+    [cite_start]The (X1Y1X2Y2)n-NH$_2$ pattern, where X1 and X2 are typically hydrophobic residues (e.g., Val, Ile, Phe or Trp), and Y1 and Y2 are cationic residues (e.g., Arg or Lys), with n typically being 2 or 3[cite: 11]. [cite_start]This template is designed to generate AMPs with $\beta$-sheet structures, which often function by forming transmembrane pores to disrupt bacterial membrane integrity[cite: 11].
+\end{itemize}
+
+[cite_start]We developed specific algorithms to classify amino acids into groups with similar physicochemical properties and used these degenerated amino acid categories to construct templates[cite: 12]. [cite_start]This enables us to efficiently explore the full sequence space defined by the templates[cite: 12]. [cite_start]For instance, 'X' represents all amino acids with high hydrophobicity, while 'Y' represents the main cationic amino acids[cite: 12]. [cite_start]When the model receives template information such as \textbf{(XXYY)n}, it expands each degenerate symbol (e.g., X or Y) into all possible real amino acid combinations based on predefined mappings (AA\_alpha or AA\_beta dictionaries)[cite: 12]. [cite_start]In this way, we can transform an abstract template (e.g., XXYY) into a vast subspace of sequences with clear biological constraints[cite: 13]. [cite_start]This method allows the model to perform more targeted sequence generation, avoiding a blind search through the infinite full sequence space[cite: 13].
+
+\subsubsection{Generative Adversarial Networks and Diffusion Model Generation}
+[cite_start]In addition to the feature-guided generation strategy, this study also introduces advanced Generative Models to further enhance the efficiency and diversity of sequence generation[cite: 15]. [cite_start]We employ a hybrid model combining a \textbf{Generative Adversarial Network (GAN)} and a \textbf{Diffusion Model} to explore a broader sequence space[cite: 15]. [cite_start]The diffusion model serves as the core generative framework, achieving effective synthesis of AMP sequences through its unique denoising process[cite: 15]. [cite_start]The model also incorporates the idea of GAN, where a Classifier is responsible for distinguishing between real ($S_0$) and generated ($\hat{S}_0$) sequences, forcing the generator (the diffusion model) to produce higher-quality sequences[cite: 15].
+
+[cite_start]By combining template-based guided generation with the free exploration of the diffusion model, our method can not only efficiently produce AMPs that conform to classic patterns but also discover novel sequences with new potential mechanisms of action, providing a broader candidate library for future drug development (Figure \ref{fig:process})[cite: 15].
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{c1d2a5893b949d6fa8429185223562b4.jpg} % Replace with your image file name
+    \caption{\textbf{Deep Generative Model-Driven Antimicrobial Peptide Design and Screening Workflow.} This flowchart outlines the complete framework for the efficient design and screening of antimicrobial peptides (AMPs) using deep generative models. \textbf{A:} Sequence Feature Extraction and Embedding. Sequence information is extracted from annotated AMPs and non-AMPs databases. Known structural templates are also used to extract and encode features via a convolution layer, which are then converted into high-dimensional sequence embedding curves. \textbf{B:} Diffusion Model-Based Sequence Generation. As the core generative module, the diffusion model is trained through two processes. \textbf{C:} In Vitro and In Vivo Validation of Candidate Peptides. Candidate peptides screened by the model enter a rigorous experimental validation stage. The left side shows in vitro and in vivo biocompatibility validation, including red blood cell hemolytic assays and toxicity assessment against bacteria at different doses, and finally in vivo biocompatibility validation in a mouse model. The right side shows a detailed in vivo antibacterial activity assay.}
+    \label{fig:process}
+\end{figure}
+\pagebreak
+
+\subsection{Physicochemical Property Calculation and Structural Assessment of Candidate AMPs}
+[cite_start]To perform preliminary screening and gain a deeper understanding of the large number of generated candidate AMPs, we calculated and evaluated their key physicochemical properties and structural predictions[cite: 28]. [cite_start]The generative model not only efficiently generates sequences but also accurately learns and reproduces the key physicochemical properties of known AMPs[cite: 29]. [cite_start]In particular, the generated sequences show a high degree of statistical consistency with the active AMP training set in terms of charge and hydrophobicity, two properties crucial for AMP function[cite: 29]. [cite_start]These detailed physicochemical property calculations and structural predictions provide rich and meaningful features for subsequent machine learning evaluations, and also lay the foundation for understanding the potential structure and function of the generated sequences[cite: 29].
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{2482c7755cb86d52f36d68bdd8cf2cc1.png} % Replace with your image file name
+    \caption{Boxplots: Generated vs Training}
+\end{figure}
+
+\subsection{In Silico Prediction of Antimicrobial Activity for Candidate AMPs}
+[cite_start]We built a machine learning-based model to efficiently predict the antimicrobial potential of the generated candidate AMPs, thus enabling large-scale in silico activity prediction[cite: 31].
+\begin{itemize}
+    [cite_start]\item \textbf{Model Construction and Training:} A random forest classifier was employed, which is a robust and efficient ensemble learning method particularly suitable for high-dimensional feature classification problems[cite: 32]. [cite_start]We used all physicochemical properties calculated in Section 2.2 as input features[cite: 32]. [cite_start]The dataset was split into an 80\% training set and a 20\% test set to train and validate the model[cite: 32].
+    [cite_start]\item \textbf{Model Performance Evaluation:} The model's predictive performance was rigorously evaluated using key metrics such as accuracy, precision, recall, F1 score, and ROC AUC to ensure its reliability[cite: 33]. [cite_start]These metrics validate the model's effectiveness in distinguishing between AMPs and non-AMPs[cite: 33].
+    [cite_start]\item \textbf{AMP Probability Prediction and Screening:} For each generated sequence, the model outputs an "AMP probability," a value that quantifies the likelihood of the sequence being classified as an antimicrobial peptide[cite: 34]. [cite_start]This provides a fast and quantitative internal quality control metric, facilitating the screening of high-potential candidate sequences from millions or even billions of generated sequences, and significantly narrowing the scope of experimental validation[cite: 34].
+    [cite_start]\item \textbf{Feature Importance Analysis:} We analyzed the importance of each physicochemical feature in the model to reveal which properties are most critical for distinguishing between AMPs and non-AMPs[cite: 35]. [cite_start]This helps to further understand the structure-function relationship of antimicrobial peptides and provides guidance for future rational design[cite: 35].
+\end{itemize}
+[cite_start]To intuitively display the characteristics of the generated sequences and the prediction quality, we created a series of diverse visualization charts, including sequence length distribution, hydrophobicity vs. charge scatter plots, aromaticity distribution, secondary structure composition, AMP probability distribution, and amino acid composition[cite: 36]. [cite_start]These charts not only help evaluate the quality of the generated sequences but also deepen our understanding of the key properties of AMPs[cite: 36].
+
+\subsection{In Vitro Evaluation of Antimicrobial Activity for Candidate AMPs}
+[cite_start]For the high-potential AMP sequences screened by the machine learning model (Section 2.3), we further conducted in vitro minimum inhibitory concentration (MIC) validation experiments[cite: 38]. [cite_start]MIC validation is the gold standard for assessing the actual antimicrobial activity of a peptide, directly measuring the peptide's ability to inhibit bacterial growth[cite: 38].
+
+\begin{table}[htbp]
+    \centering
+    \caption{Preliminary In Vitro MIC Validation Results}
+    \label{tab:mic}
+    \begin{tabular}{lSS}
+        \toprule
+        \textbf{Peptides} & \multicolumn{2}{c}{\textbf{MIC (\si{\micro\M})}} \\
+        \cmidrule(lr){2-3}
+        & {E. coli} & {S. aureus} \\
+        \midrule
+        AMPs14501 & 0.8 & 0.4 \\
+        AMPs14874 & >3.7 & 3.7 \\
+        Astucin & >2.5 & 2.5 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+[cite_start]\textbf{Experimental Design and Methods:} We selected a series of representative Gram-positive bacteria (e.g., \textit{Staphylococcus aureus}) and Gram-negative bacteria (e.g., \textit{Escherichia coli}) as test strains[cite: 40]. [cite_start]The inhibitory effect of different concentrations of candidate peptides on bacterial growth was systematically tested using the microbroth dilution method[cite: 40].
+
+[cite_start]\textbf{Activity Evaluation and Data Analysis:} The minimum peptide concentration required to inhibit the growth of a specific bacterium (i.e., the MIC value) was determined[cite: 41]. [cite_start]We conducted a detailed analysis of the experimental results, comparing the activity differences of peptides from different generation strategies and contrasting them with the reported activities of classic AMPs[cite: 41].
+
+[cite_start]Preliminary MIC validation results showed that several peptide sequences generated and screened by this computational framework exhibited significant antibacterial activity against the tested strains[cite: 42]. [cite_start]For example, peptide sequences XX and YY had MIC values of A $\mu$M and B $\mu$M against \textit{E. coli}, which is comparable to the activity levels of some reported natural antimicrobial peptides[cite: 42]. [cite_start]These experimental data strongly validate the effectiveness of this computational framework in generating and predicting novel AMPs, proving that it is feasible to discover bioactive AMPs through computational methods[cite: 42].
+
+\end{document}

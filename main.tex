@@ -1,0 +1,80 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{}
+
+\newenvironment{keywords}{\noindent\textbf{Keywords:} }{}
+
+
+\title{AMP}
+\author{Junhua GUO}
+\date{July 2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    to be done.
+\end{abstract}
+
+\begin{keywords}
+Antimicrobial peptides, Progressive Focused Transformer, graph neural network, reinforcement learning, peptide design.
+\end{keywords}
+
+\section{Introduction}
+Antimicrobial peptides (AMPs) are ...
+
+\section{Methodology}
+\subsection{Framework Overview}
+
+\begin{enumerate}
+  \item \textbf{Sequence Embedding \& Structure Graph Construction}\\
+    Sequences are embedded using pre-trained protein models (e.g., ProtBERT, ESM‑2). Predicted 3D structures from AlphaFold/OmegaFold are converted into graphs (nodes = residues; edges = spatial proximity).
+  \item \textbf{PFT‑Based Transformer}\\
+    Applies Progressive Focused Attention (PFA) to focus on key residue tokens layer by layer, reducing redundant attention computations and highlighting functional hotspots.
+  \item \textbf{GNN Structural Scorer}\\
+    Utilizes graph attention or message‑passing networks to integrate PFT features with structural topology. Contrastive learning and pseudo‑label distillation enhance classification and regression accuracy.
+  \item \textbf{Generator \& Reinforcement Learning}\\
+    A generative model (diffusion/VAE/LLM) produces candidate peptides. PFT+GNN scores serve as rewards for policy-gradient optimization. Multi‑objective Pareto ranking filters for antimicrobial activity, toxicity, and stability.
+  \item \textbf{Experimental Validation \& Feedback}\\
+    Top candidates are synthesized and evaluated in vitro/in vivo. Experimental outcomes are fed back to fine‑tune the generator, PFT, and GNN modules in an iterative loop.
+\end{enumerate}
+
+
+
+\subsection{Progressive Focused Transformer}
+The PFT module implements Progressive Focused Attention (PFA):
+\begin{equation}
+    A^{(l)} = \mathrm{Norm}\bigl(A^{(l-1)} \odot A_{\text{cal}}^{(l)}\bigr),
+\end{equation}
+where $A_{\text{cal}}^{(l)}$ is the computed attention map at layer $l$, and $\odot$ denotes element‑wise masking. This mechanism progressively narrows focus to high‑importance residue tokens, reducing FLOPs and improving interpretability.
+
+\subsection{Graph Neural Network Scoring}
+to be done
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.2\linewidth]{GTIIT.png}
+    \caption{Enter Caption}
+    \label{fig:placeholder}
+\end{figure}
+
+Pareto ranking across multiple objectives selects top candidates for synthesis.
+
+
+\section{Results and Discussions}
+\subsection{Results}
+
+
+\subsection{Discussions}
+\subsubsection{Limitations}
+
+
+
+\subsubsection{Future Work}
+\section{Conclusion}
+We present a novel AMP design framework that integrates PFT for efficient sequence encoding, GNN for structural evaluation, and reinforcement learning for generator optimization. This approach combines computational efficiency with structural insight and iterative refinement, enabling accelerated discovery of potent antimicrobial peptides.
+
+\end{document}
+
